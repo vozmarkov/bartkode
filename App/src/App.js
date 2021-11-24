@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
-import ListItemButton from "@mui/material/ListItemButton";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
 import { Canvas } from "./components";
-
+import Menu from "./Menu";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -67,23 +58,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 function AppContent() {
-  useEffect(() => {
-    fetchGiftPosts();
-  }, []);
-
-  const [giftPosts, setGiftPosts] = useState([]);
-
-  const fetchGiftPosts = async () => {
-    const data = await fetch("/posts");
-    const items = await data.json();
-    setGiftPosts(items);
-  };
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
-  const handleClick = () => {
     setOpen(!open);
   };
 
@@ -92,7 +68,7 @@ function AppContent() {
       <AppBar position="absolute" open={open}>
         <Toolbar
           sx={{
-            pr: "24px", // keep right padding when drawer closed
+            pr: "16px", // keep right padding when drawer closed
           }}
         >
           <IconButton
@@ -131,29 +107,7 @@ function AppContent() {
             <ChevronLeftIcon />
           </IconButton>
         </Toolbar>
-        <Divider />
-        <List>
-          <ListItem button component={NavLink} to="/">
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component={NavLink} to="/subscribe">
-            <ListItemText primary="Subscribe" />
-          </ListItem>
-          <ListItem button component={NavLink} to="/aboutus">
-            <ListItemText primary="About us" />
-          </ListItem>
-        </List>
-        <Divider />
-        <ListSubheader inset>A Gift For Anyone</ListSubheader>
-        <Divider />
-        <List position="bottom">
-          <ListItem button component={NavLink} to="/privacypolicy">
-            <ListItemText primary="Privacy Policy" />
-          </ListItem>
-          <ListItem button component={NavLink} to="/disclaimer">
-            <ListItemText primary="Disclaimer" />
-          </ListItem>
-        </List>
+        <Menu />
       </Drawer>
       <Box
         component="main"
