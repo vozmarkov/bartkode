@@ -42,7 +42,7 @@ const CollapseMenu = ({ text = "", menuItems = [] }) => {
           <FixedSizeList
             height={400}
             width={360}
-            itemSize={25}
+            itemSize={40}
             itemCount={menuItems.length}
             overscanCount={5}
           >
