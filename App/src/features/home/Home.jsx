@@ -8,7 +8,7 @@ const Home = () => {
   // const [giftPosts, setGiftPosts] = useState([]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ marginLeft: "auto", marginRight: "auto" }}>
       <CircularProgress />
     </div>
   );
